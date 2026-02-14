@@ -121,7 +121,7 @@ public class ConfigGUI extends JPanel {
 
         previewFrame = new JFrame();
 
-        previewFrame.setTitle("Overlay Preview");
+        previewFrame.setTitle("要塞信息覆盖预览");
         previewFrame.setResizable(false);
         previewFrame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         previewEyeThrowsOverlayButton.addActionListener(a -> {
@@ -182,7 +182,7 @@ public class ConfigGUI extends JPanel {
             StringSelection stringSelection = new StringSelection(OBS_SCRIPT_PATH.toAbsolutePath().toString());
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(stringSelection, null);
-            JOptionPane.showMessageDialog(null, "Copied to clipboard.");
+            JOptionPane.showMessageDialog(null, "已复制到剪切板。");
         });
 
         OBSScriptSetupButton.addActionListener(a -> {
@@ -222,7 +222,7 @@ public class ConfigGUI extends JPanel {
         });
 
         changeNetherCoordsColorButton.addActionListener(a -> {
-            new HSVColorChooser("Nether Coords Color", c -> {
+            new HSVColorChooser("下界坐标颜色", c -> {
                 CalcOverlaySettings.getInstance().netherCoordsColor = c;
                 CalcOverlaySettings.save();
                 updatePreview();
@@ -238,7 +238,7 @@ public class ConfigGUI extends JPanel {
         });
 
         changeNegativeCoordsColorButton.addActionListener(a -> {
-            new HSVColorChooser("Negative Coords Color", c -> {
+            new HSVColorChooser("负数坐标颜色", c -> {
                 CalcOverlaySettings.getInstance().negativeCoords.color = c;
                 CalcOverlaySettings.save();
                 updatePreview();
@@ -256,7 +256,7 @@ public class ConfigGUI extends JPanel {
 
         changeFontButton.addActionListener(a -> {
             try {
-                FontDialog dialog = new FontDialog(JingleGUI.get(), "CalcOverlay Font Chooser", true);
+                FontDialog dialog = new FontDialog(JingleGUI.get(), "CalcOverlay字体选择器", true);
                 dialog.setSelectedFont(CalcOverlayUtil.getFont());
                 dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 dialog.setVisible(true);
@@ -313,7 +313,7 @@ public class ConfigGUI extends JPanel {
         clearOverlayTime.getParent().revalidate();
 
         useNegativeCoordsColor.setSelected(CalcOverlaySettings.getInstance().negativeCoords.use);
-        useNegativeCoordsColor.setText(CalcOverlaySettings.getInstance().negativeCoords.use ? "Enabled" : "Disabled");
+        useNegativeCoordsColor.setText(CalcOverlaySettings.getInstance().negativeCoords.use ? "已开启" : "已关闭");
         changeNegativeCoordsColorButton.setEnabled(CalcOverlaySettings.getInstance().negativeCoords.use);
 
         netherCoordsColorPanel.setBackground(CalcOverlaySettings.getInstance().netherCoordsColor);
@@ -351,13 +351,13 @@ public class ConfigGUI extends JPanel {
 
         gbc.insets = new Insets(0, hGap, vGap, hGap);
 
-        JLabel showColumnLabel = new JLabel("<html>Show<br>column<html>");
+        JLabel showColumnLabel = new JLabel("<html>显示<br>列<html>");
         showColumnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         eyeThrowsColumnsPanel.add(showColumnLabel, gbc);
 
-        JLabel showIconLabel = new JLabel("Header");
+        JLabel showIconLabel = new JLabel("首行");
         showIconLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 2;
         gbc.anchor = GridBagConstraints.SOUTH;
@@ -387,7 +387,7 @@ public class ConfigGUI extends JPanel {
             gbc.anchor = GridBagConstraints.CENTER;
             eyeThrowsColumnsPanel.add(headerCombobox, gbc);
 
-            JButton moveUpButton = new JButton("Move left");
+            JButton moveUpButton = new JButton("向左移动");
             gbc.gridx = 3;
             gbc.anchor = GridBagConstraints.CENTER;
             moveUpButton.addActionListener(a -> {
@@ -400,7 +400,7 @@ public class ConfigGUI extends JPanel {
             moveUpButton.setEnabled(gbc.gridy > 1);
             eyeThrowsColumnsPanel.add(moveUpButton, gbc);
 
-            JButton moveDownButton = new JButton("Move right");
+            JButton moveDownButton = new JButton("向右移动");
             gbc.gridx = 4;
             gbc.anchor = GridBagConstraints.CENTER;
             moveDownButton.addActionListener(a -> {
@@ -429,13 +429,13 @@ public class ConfigGUI extends JPanel {
 
         gbc.insets = new Insets(0, hGap, vGap, hGap);
 
-        JLabel showColumnLabel = new JLabel("<html>Show<br>column<html>");
+        JLabel showColumnLabel = new JLabel("<html>显示<br>列<html>");
         showColumnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         aaColumnsPanel.add(showColumnLabel, gbc);
 
-        JLabel showIconLabel = new JLabel("Header");
+        JLabel showIconLabel = new JLabel("首行");
         showIconLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 2;
         gbc.anchor = GridBagConstraints.SOUTH;
@@ -465,7 +465,7 @@ public class ConfigGUI extends JPanel {
             gbc.anchor = GridBagConstraints.CENTER;
             aaColumnsPanel.add(headerCombobox, gbc);
 
-            JButton moveUpButton = new JButton("Move left");
+            JButton moveUpButton = new JButton("向左移动");
             gbc.gridx = 3;
             gbc.anchor = GridBagConstraints.CENTER;
             moveUpButton.addActionListener(a -> {
@@ -478,7 +478,7 @@ public class ConfigGUI extends JPanel {
             moveUpButton.setEnabled(gbc.gridy > 1);
             aaColumnsPanel.add(moveUpButton, gbc);
 
-            JButton moveDownButton = new JButton("Move right");
+            JButton moveDownButton = new JButton("向右移动");
             gbc.gridx = 4;
             gbc.anchor = GridBagConstraints.CENTER;
             moveDownButton.addActionListener(a -> {
@@ -507,7 +507,7 @@ public class ConfigGUI extends JPanel {
 
         gbc.insets = new Insets(0, hGap, vGap, hGap);
 
-        JLabel showRowLabel = new JLabel("<html>Show<br>row<html>");
+        JLabel showRowLabel = new JLabel("<html>显示<br>行<html>");
         showRowLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 1;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -532,7 +532,7 @@ public class ConfigGUI extends JPanel {
             gbc.anchor = GridBagConstraints.CENTER;
             aaRowsPanel.add(showRowCheckbox, gbc);
 
-            JButton moveUpButton = new JButton("Move up");
+            JButton moveUpButton = new JButton("向上移动");
             gbc.gridx = 2;
             gbc.anchor = GridBagConstraints.CENTER;
             moveUpButton.addActionListener(a -> {
@@ -545,7 +545,7 @@ public class ConfigGUI extends JPanel {
             moveUpButton.setEnabled(gbc.gridy > 1);
             aaRowsPanel.add(moveUpButton, gbc);
 
-            JButton moveDownButton = new JButton("Move down");
+            JButton moveDownButton = new JButton("向下移动");
             gbc.gridx = 3;
             gbc.anchor = GridBagConstraints.CENTER;
             moveDownButton.addActionListener(a -> {
@@ -609,34 +609,34 @@ public class ConfigGUI extends JPanel {
         mainPanel.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         enabledCheckbox = new JCheckBox();
-        enabledCheckbox.setText("Enable overlay");
+        enabledCheckbox.setText("开启OBS覆盖");
         mainPanel.add(enabledCheckbox, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 10, 0), -1, -1));
         mainPanel.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
-        label1.setText("OBS Script:");
+        label1.setText("OBS脚本:");
         panel1.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         copyScriptPathButton = new JButton();
-        copyScriptPathButton.setText("Copy Script Path");
+        copyScriptPathButton.setText("复制脚本路径");
         panel1.add(copyScriptPathButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         OBSScriptSetupButton = new JButton();
-        OBSScriptSetupButton.setText("OBS Script Setup");
+        OBSScriptSetupButton.setText("OBS脚本配置教程");
         panel1.add(OBSScriptSetupButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         checkForUpdatesButton = new JButton();
-        checkForUpdatesButton.setText("Check for updates");
+        checkForUpdatesButton.setText("检查更新（汉化版不建议从此处更新）");
         mainPanel.add(checkForUpdatesButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         enabledPanel = new JPanel();
         enabledPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(enabledPanel, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        enabledPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), "Overlay Config", TitledBorder.LEFT, TitledBorder.TOP, this.$$$getFont$$$(null, Font.BOLD, 14, enabledPanel.getFont()), null));
+        enabledPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), "OBS覆盖配置", TitledBorder.LEFT, TitledBorder.TOP, this.$$$getFont$$$(null, Font.BOLD, 14, enabledPanel.getFont()), null));
         settingsPane = new JTabbedPane();
         settingsPane.setTabLayoutPolicy(0);
         settingsPane.setTabPlacement(1);
         enabledPanel.add(settingsPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 420), null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         scrollPane1.setHorizontalScrollBarPolicy(31);
-        settingsPane.addTab("General", scrollPane1);
+        settingsPane.addTab("通用", scrollPane1);
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(6, 1, new Insets(5, 5, 5, 5), -1, -1));
         scrollPane1.setViewportView(panel2);
@@ -646,14 +646,14 @@ public class ConfigGUI extends JPanel {
         overlayPositionCombobox = new JComboBox();
         panel3.add(overlayPositionCombobox, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
-        label2.setText("Overlay position:");
+        label2.setText("覆盖位置:");
         label2.setToolTipText("<html>Overlay position in the image. Image is always the same size,<br>and this setting lets you choose which corner overlay anchors to.</html>");
         panel3.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
-        label3.setText("Outline width:");
+        label3.setText("文字描边宽度:");
         panel4.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         outlineWidthSpinner = new JSpinner();
         panel4.add(outlineWidthSpinner, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -661,7 +661,7 @@ public class ConfigGUI extends JPanel {
         panel5.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel5, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
-        label4.setText("Clear overlay after:");
+        label4.setText("覆盖自动清除时间:");
         panel5.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clearOverlayTime = new JSpinner();
         panel5.add(clearOverlayTime, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -674,12 +674,12 @@ public class ConfigGUI extends JPanel {
         final JPanel panel6 = new JPanel();
         panel6.setLayout(new GridLayoutManager(3, 1, new Insets(5, 5, 5, 5), -1, -1));
         panel2.add(panel6, new GridConstraints(3, 0, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel6.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Font & Colors", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel6.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "字体 & 颜色", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JPanel panel7 = new JPanel();
         panel7.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
         panel6.add(panel7, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label5 = new JLabel();
-        label5.setText("Nether coords color:");
+        label5.setText("下界坐标颜色:");
         panel7.add(label5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         netherCoordsColorPanel = new JPanel();
         netherCoordsColorPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
@@ -687,19 +687,19 @@ public class ConfigGUI extends JPanel {
         final Spacer spacer3 = new Spacer();
         panel7.add(spacer3, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         changeNetherCoordsColorButton = new JButton();
-        changeNetherCoordsColorButton.setText("Change color");
+        changeNetherCoordsColorButton.setText("更改颜色");
         panel7.add(changeNetherCoordsColorButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel8 = new JPanel();
         panel8.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 5, 0), -1, -1));
         panel6.add(panel8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         changeFontButton = new JButton();
-        changeFontButton.setText("Change font");
+        changeFontButton.setText("更改字体");
         panel8.add(changeFontButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         fontLabel = new JLabel();
         fontLabel.setText("<font>");
         panel8.add(fontLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label6 = new JLabel();
-        label6.setText("Font:");
+        label6.setText("字体:");
         panel8.add(label6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panel8.add(spacer4, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
@@ -707,22 +707,22 @@ public class ConfigGUI extends JPanel {
         panel9.setLayout(new GridLayoutManager(1, 5, new Insets(0, 0, 0, 0), -1, -1));
         panel6.add(panel9, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label7 = new JLabel();
-        label7.setText("Negative coords color:");
+        label7.setText("负数坐标颜色:");
         panel9.add(label7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         negativeCoordsColorPanel = new JPanel();
         negativeCoordsColorPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel9.add(negativeCoordsColorPanel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(20, 18), null, 0, false));
         changeNegativeCoordsColorButton = new JButton();
-        changeNegativeCoordsColorButton.setText("Change color");
+        changeNegativeCoordsColorButton.setText("更改颜色");
         panel9.add(changeNegativeCoordsColorButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();
         panel9.add(spacer5, new GridConstraints(0, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         useNegativeCoordsColor = new JCheckBox();
-        useNegativeCoordsColor.setText("Disabled");
+        useNegativeCoordsColor.setText("已关闭");
         panel9.add(useNegativeCoordsColor, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
         scrollPane2.setHorizontalScrollBarPolicy(31);
-        settingsPane.addTab("Eye Throws Overlay", scrollPane2);
+        settingsPane.addTab("要塞信息", scrollPane2);
         final JPanel panel10 = new JPanel();
         panel10.setLayout(new GridLayoutManager(7, 1, new Insets(5, 5, 5, 5), -1, -1));
         scrollPane2.setViewportView(panel10);
@@ -732,60 +732,60 @@ public class ConfigGUI extends JPanel {
         shownMeasurementsSpinner = new JSpinner();
         panel11.add(shownMeasurementsSpinner, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label8 = new JLabel();
-        label8.setText("Shown measurements:");
+        label8.setText("显示几行要塞信息:");
         panel11.add(label8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel12 = new JPanel();
         panel12.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel10.add(panel12, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label9 = new JLabel();
-        label9.setText("Overworld coords:");
+        label9.setText("要塞主世界坐标显示在:");
         panel12.add(label9, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         overworldCoordsTypeCombobox = new JComboBox();
         panel12.add(overworldCoordsTypeCombobox, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showAngleDirectionCheckbox = new JCheckBox();
-        showAngleDirectionCheckbox.setText("Show angle direction");
+        showAngleDirectionCheckbox.setText("显示角度方位");
         panel10.add(showAngleDirectionCheckbox, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showCoordsBasedOnCheckbox = new JCheckBox();
-        showCoordsBasedOnCheckbox.setText("Show Overworld/Nether coords based on dimension");
-        showCoordsBasedOnCheckbox.setToolTipText("<html>\nIf enabled, only overworld coords will be shown while you're in overworld,<br>and nether coords will be hidden.<br> Once you F3+C in the nether, only nether coords will be shown,<br>and overworld coords will be hidden.\n<br><br>\nIf disabled, both coords will always be shown.\n</html>");
+        showCoordsBasedOnCheckbox.setText("根据当前维度显示主世界和下界坐标");
+        showCoordsBasedOnCheckbox.setToolTipText("<html>\n如果勾选，当你在主世界时只显示主世界坐标，下界坐标将会被隐藏。<br>\n当你在下界按下F3+C时，下界坐标将会被展示，主世界坐标将会被隐藏。<br><br>\n如果不勾选，主世界坐标和下界坐标都会被显示。\n</html>");
         panel10.add(showCoordsBasedOnCheckbox, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel13 = new JPanel();
         panel13.setLayout(new GridLayoutManager(1, 1, new Insets(5, 5, 5, 5), -1, -1));
         panel10.add(panel13, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel13.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Columns", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel13.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "列", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         eyeThrowsColumnsPanel = new JPanel();
         eyeThrowsColumnsPanel.setLayout(new GridBagLayout());
         panel13.add(eyeThrowsColumnsPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         previewEyeThrowsOverlayButton = new JButton();
-        previewEyeThrowsOverlayButton.setLabel("Preview Eye Throws Overlay");
-        previewEyeThrowsOverlayButton.setText("Preview Eye Throws Overlay");
+        previewEyeThrowsOverlayButton.setLabel("预览要塞信息样式");
+        previewEyeThrowsOverlayButton.setText("预览要塞信息样式");
         panel10.add(previewEyeThrowsOverlayButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer6 = new Spacer();
         panel10.add(spacer6, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JScrollPane scrollPane3 = new JScrollPane();
         scrollPane3.setHorizontalScrollBarPolicy(31);
         scrollPane3.setName("");
-        settingsPane.addTab("Blind Coords Overlay", scrollPane3);
+        settingsPane.addTab("盲传坐标", scrollPane3);
         final JPanel panel14 = new JPanel();
         panel14.setLayout(new GridLayoutManager(3, 1, new Insets(5, 5, 5, 5), -1, -1));
         scrollPane3.setViewportView(panel14);
         previewBlindCoordsOverlayButton = new JButton();
-        previewBlindCoordsOverlayButton.setLabel("Preview Blind Coords Overlay");
-        previewBlindCoordsOverlayButton.setText("Preview Blind Coords Overlay");
+        previewBlindCoordsOverlayButton.setLabel("预览盲传（或原门）坐标样式");
+        previewBlindCoordsOverlayButton.setText("预览盲传（或原门）坐标样式");
         panel14.add(previewBlindCoordsOverlayButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer7 = new Spacer();
         panel14.add(spacer7, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         enableBlindCoordsOverlay = new JCheckBox();
-        enableBlindCoordsOverlay.setText("Enable Blind Coords on Overlay");
+        enableBlindCoordsOverlay.setText("在覆盖上显示盲传（或原门）坐标");
         panel14.add(enableBlindCoordsOverlay, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane4 = new JScrollPane();
         scrollPane4.setHorizontalScrollBarPolicy(31);
-        settingsPane.addTab("All Advancements Overlay", scrollPane4);
+        settingsPane.addTab("全进度信息", scrollPane4);
         final JPanel panel15 = new JPanel();
         panel15.setLayout(new GridLayoutManager(4, 3, new Insets(5, 5, 5, 5), -1, -1));
         scrollPane4.setViewportView(panel15);
         previewAAOverlayButton = new JButton();
-        previewAAOverlayButton.setText("Preview All Advancements Overlay");
+        previewAAOverlayButton.setText("预览全进度信息样式");
         panel15.add(previewAAOverlayButton, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer8 = new Spacer();
         panel15.add(spacer8, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -794,22 +794,22 @@ public class ConfigGUI extends JPanel {
         panel15.add(panel16, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel17 = new JPanel();
         panel17.setLayout(new GridLayoutManager(1, 1, new Insets(5, 5, 5, 5), -1, -1));
-        panel16.add(panel17, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel17.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Columns", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel16.add(panel17, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 1, false));
+        panel17.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "列", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         aaColumnsPanel = new JPanel();
         aaColumnsPanel.setLayout(new GridBagLayout());
         panel17.add(aaColumnsPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel18 = new JPanel();
         panel18.setLayout(new GridLayoutManager(1, 1, new Insets(5, 5, 5, 5), -1, -1));
         panel16.add(panel18, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel18.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Rows", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel18.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "行", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         aaRowsPanel = new JPanel();
         aaRowsPanel.setLayout(new GridBagLayout());
         panel18.add(aaRowsPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final Spacer spacer9 = new Spacer();
         panel16.add(spacer9, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         enableAllAdvancementsOverlay = new JCheckBox();
-        enableAllAdvancementsOverlay.setText("Enable All Advancements on Overlay");
+        enableAllAdvancementsOverlay.setText("在覆盖上显示全进度信息");
         panel15.add(enableAllAdvancementsOverlay, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer10 = new Spacer();
         mainPanel.add(spacer10, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));

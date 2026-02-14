@@ -3,7 +3,7 @@
 
 obs = obslua
 
-calc_overlay_dir = os.getenv("UserProfile"):gsub("\\", "/") .. "/.config/Jingle/calc-overlay-plugin/"
+calc_overlay_dir = os.getenv("UserProfile"):gsub("\\", "/") .. "/.config/Jingle-zh_CN/calc-overlay-plugin/"
 
 timers_activated = false
 last_state = ''

@@ -19,7 +19,7 @@ public class HSVColorChooser {
     public HSVColorChooser(String title, Consumer<Color> onColorChange) {
         JColorChooser chooser = new JColorChooser(CalcOverlaySettings.getInstance().netherCoordsColor);
         for (AbstractColorChooserPanel p : chooser.getChooserPanels()) {
-            if (!p.getDisplayName().equals("HSV")) {
+            if (!p.getDisplayName().contains("HSV")) {  //修改了这一行，更改颜色按钮就生效了
                 chooser.removeChooserPanel(p);
             } else {
                 removeTransparencySlider(p);

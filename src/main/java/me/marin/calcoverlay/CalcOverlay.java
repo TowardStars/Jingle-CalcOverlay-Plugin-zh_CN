@@ -98,7 +98,7 @@ public class CalcOverlay {
             CalcOverlaySettings.getInstance().aaSettings = AllAdvancementsSettings.loadDefaultSettings();
             CalcOverlaySettings.getInstance().outlineWidth = 3;
             if (CalcOverlaySettings.getInstance().fontData == null) {
-                CalcOverlaySettings.getInstance().fontData = new CalcOverlaySettings.FontData("Calibri", 48);
+                CalcOverlaySettings.getInstance().fontData = new CalcOverlaySettings.FontData("微软雅黑", 48);
             }
 
             Jingle.log(Level.INFO, "\n\n\t\tCALC OVERLAY v2.0.0 UPDATE\n\n" +

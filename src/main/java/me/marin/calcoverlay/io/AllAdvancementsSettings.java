@@ -56,9 +56,9 @@ public class AllAdvancementsSettings {
     @Getter
     public enum HeaderRow {
         @Expose @SerializedName("nothing")
-        NOTHING("Nothing"),
+        NOTHING("空白"),
         @Expose @SerializedName("show text")
-        TEXT("Text");
+        TEXT("文本");
 
         private final String display;
 
@@ -76,13 +76,13 @@ public class AllAdvancementsSettings {
     @Getter
     public enum ColumnType {
         @Expose @SerializedName("icons")
-        ICONS("Icons", ""),
+        ICONS("图标", ""),
         @Expose @SerializedName("location")
-        LOCATION("Location", "Location"),
+        LOCATION("位置", "位置"),
         @Expose @SerializedName("nether coords")
-        NETHER_COORDS("Nether Coords", "Nether"),
+        NETHER_COORDS("下界", "下界"),
         @Expose @SerializedName("angle")
-        ANGLE("Angle", "Angle");
+        ANGLE("角度", "角度");
 
         private final String configDisplay;
         private final String overlayDisplay;
@@ -100,10 +100,10 @@ public class AllAdvancementsSettings {
     @AllArgsConstructor
     @Getter
     public enum RowType {
-        STRONGHOLD("Stronghold", OverlayUtil.strongholdIconImage),
-        SPAWN("Shulker", OverlayUtil.spawnIconImage),
-        OUTPOST("Outpost", OverlayUtil.outpostIconImage),
-        MONUMENT("Monument", OverlayUtil.monumentIconImage);
+        STRONGHOLD("要塞", OverlayUtil.strongholdIconImage),
+        SPAWN("潜影贝", OverlayUtil.spawnIconImage),
+        OUTPOST("掠夺者前哨站", OverlayUtil.outpostIconImage),
+        MONUMENT("海底神殿", OverlayUtil.monumentIconImage);
 
         private final String configDisplay;
         private final Image icon;

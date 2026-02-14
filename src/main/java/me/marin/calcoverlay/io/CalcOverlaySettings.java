@@ -121,6 +121,7 @@ public class CalcOverlaySettings {
 
     private static void loadDefaultSettings() {
         instance = new CalcOverlaySettings();
+        instance.fontData = new FontData("微软雅黑", 48);
         instance.calcOverlayEnabled = false;
         instance.version = VersionUtil.CURRENT_VERSION.toString();
         instance.overlayPosition = Position.TOP_LEFT;
@@ -148,13 +149,13 @@ public class CalcOverlaySettings {
     @AllArgsConstructor @Getter
     public enum Position {
         @Expose @SerializedName("top left")
-        TOP_LEFT("Top left"),
+        TOP_LEFT("左上"),
         @Expose @SerializedName("top right")
-        TOP_RIGHT("Top right"),
+        TOP_RIGHT("右上"),
         @Expose @SerializedName("bottom left")
-        BOTTOM_LEFT("Bottom left"),
+        BOTTOM_LEFT("左下"),
         @Expose @SerializedName("bottom right")
-        BOTTOM_RIGHT("Bottom right");
+        BOTTOM_RIGHT("右下");
 
         public boolean isTop() {
             return this == TOP_LEFT || this == TOP_RIGHT;
@@ -223,11 +224,11 @@ public class CalcOverlaySettings {
     @AllArgsConstructor @Getter
     public enum HeaderRow {
         @Expose @SerializedName("nothing")
-        NOTHING("Nothing"),
+        NOTHING("空白"),
         @Expose @SerializedName("show icon")
-        ICON("Icon"),
+        ICON("图标"),
         @Expose @SerializedName("show text")
-        TEXT("Text");
+        TEXT("文本");
 
         private final String display;
 
@@ -244,15 +245,15 @@ public class CalcOverlaySettings {
     @AllArgsConstructor
     public enum ColumnType {
         @Expose @SerializedName("overworld coords")
-        OVERWORLD_COORDS("Overworld Coords", "Location", OverlayUtil.overworldIconImage),
+        OVERWORLD_COORDS("主世界坐标", "主世界", OverlayUtil.overworldIconImage),
         @Expose @SerializedName("certainty")
-        CERTAINTY("Certainty", "%", OverlayUtil.certaintyIconImage),
+        CERTAINTY("%", "%", OverlayUtil.certaintyIconImage),
         @Expose @SerializedName("distance")
-        DISTANCE("Distance", "Dist.", OverlayUtil.distanceIconImage),
+        DISTANCE("距离", "距离", OverlayUtil.distanceIconImage),
         @Expose @SerializedName("nether coords")
-        NETHER_COORDS("Nether Coords", "Nether", OverlayUtil.netherIconImage),
+        NETHER_COORDS("下界坐标", "下界", OverlayUtil.netherIconImage),
         @Expose @SerializedName("angle")
-        ANGLE("Angle", "Angle", OverlayUtil.angleIconImage);
+        ANGLE("角度", "角度", OverlayUtil.angleIconImage);
 
         @Getter
         private final String configDisplay;
@@ -267,9 +268,9 @@ public class CalcOverlaySettings {
                 case OVERWORLD_COORDS:
                     switch (coords) {
                         case CHUNK:
-                            return "Chunk";
+                            return "区块";
                         default:
-                            return "Location";
+                            return "位置";
                     }
             }
         }
@@ -278,7 +279,7 @@ public class CalcOverlaySettings {
     @AllArgsConstructor @Getter
     public enum OverworldsCoords {
         @Expose @SerializedName("chunk")
-        CHUNK("Chunk"),
+        CHUNK("区块"),
         @Expose @SerializedName("(8, 8)")
         EIGHT_EIGHT("(8, 8)"),
         @Expose @SerializedName("(4, 4)")
@@ -308,11 +309,11 @@ public class CalcOverlaySettings {
     @AllArgsConstructor @Getter
     public enum ClearOverlayTimeUnit {
         @Expose @SerializedName("never")
-        NEVER("never"),
+        NEVER("随NinjabrainBot数据重置而消失"),
         @Expose @SerializedName("seconds")
-        SECONDS("seconds"),
+        SECONDS("秒"),
         @Expose @SerializedName("minutes")
-        MINUTES("minutes");
+        MINUTES("分钟");
 
         private final String display;
 

@@ -23,7 +23,7 @@ public class CalcOverlayUtil {
         scheduler.scheduleAtFixedRate(runnable, 0, delayMs, TimeUnit.MILLISECONDS);
     }
 
-    private static final Font DEFAULT_FONT = new Font("Calibri", Font.PLAIN, 48);
+    private static final Font DEFAULT_FONT = new Font("微软雅黑", Font.PLAIN, 48);
     public static Font getFont() {
         Font font = DEFAULT_FONT;
 
