@@ -363,11 +363,11 @@ public class CalcOverlaySettings {
     @Getter
     public enum AngleDisplay {
         @Expose @SerializedName("all")
-        ALL("Angle (and angle change)"),
+        ALL("角度(包含玩家需要再转动的角度)"),
         @Expose @SerializedName("angle")
-        ONLY_ANGLE("Angle only"),
+        ONLY_ANGLE("仅角度"),
         @Expose @SerializedName("angle change")
-        ONLY_ANGLE_CHANGE("Angle change only");
+        ONLY_ANGLE_CHANGE("仅玩家需要再转动的角度");
 
         private final String display;
 

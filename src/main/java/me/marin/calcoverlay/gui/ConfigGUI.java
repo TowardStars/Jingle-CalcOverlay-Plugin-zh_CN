@@ -161,8 +161,8 @@ public class ConfigGUI extends JPanel {
             if (settings.showInfoBar) {
                 JOptionPane.showMessageDialog(null,
                         "因为 Ninjabrain Bot 的 API 没有提供精确的调整次数。\n\n" +
-                        "对于正常使用场景（少于 20 次调整）应该是准确的，\n但它不是 100% 完全精确。\n\n" +
-                        "这个问题将在 Ninjabrain Bot v1.5.2+ 中修复。",
+                                "对于正常使用场景（少于 20 次调整）应该是准确的，\n但它不是 100% 完全精确。\n\n" +
+                                "这个问题将在 Ninjabrain Bot v1.5.2+ 中修复。",
                         "CalcOverlay - 信息栏", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -770,7 +770,7 @@ public class ConfigGUI extends JPanel {
         final JPanel panel13 = new JPanel();
         panel13.setLayout(new GridLayoutManager(1, 1, new Insets(5, 5, 5, 5), -1, -1));
         panel10.add(panel13, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel13.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Columns", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel13.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "列", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         eyeThrowsColumnsPanel = new JPanel();
         eyeThrowsColumnsPanel.setLayout(new GridBagLayout());
         panel13.add(eyeThrowsColumnsPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -784,7 +784,7 @@ public class ConfigGUI extends JPanel {
         panel14.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel10.add(panel14, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label10 = new JLabel();
-        label10.setText("Angle display:");
+        label10.setText("角度显示:");
         panel14.add(label10, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         angleDisplayCombobox = new JComboBox();
         panel14.add(angleDisplayCombobox, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -823,7 +823,7 @@ public class ConfigGUI extends JPanel {
         panel16.add(panel17, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel18 = new JPanel();
         panel18.setLayout(new GridLayoutManager(1, 1, new Insets(5, 5, 5, 5), -1, -1));
-        panel17.add(panel18, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel17.add(panel18, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 1, false));
         panel18.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "列", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         aaColumnsPanel = new JPanel();
         aaColumnsPanel.setLayout(new GridBagLayout());
