@@ -1,17 +1,12 @@
 package me.marin.calcoverlay.util;
 
+import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
 import me.marin.calcoverlay.CalcOverlay;
-import me.marin.calcoverlay.gui.AllAdvancementsGUI;
-import me.marin.calcoverlay.gui.ConfigGUI;
-import me.marin.calcoverlay.gui.BlindCoordsGUI;
-import me.marin.calcoverlay.gui.MeasurementsGUI;
+import me.marin.calcoverlay.gui.*;
 import me.marin.calcoverlay.io.AllAdvancementsSettings;
 import me.marin.calcoverlay.io.CalcOverlaySettings;
-import me.marin.calcoverlay.util.data.AngleToCoords;
-import me.marin.calcoverlay.util.data.PlayerPosition;
-import me.marin.calcoverlay.util.data.Position;
-import me.marin.calcoverlay.util.data.Prediction;
+import me.marin.calcoverlay.util.data.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Level;
 import xyz.duncanruns.jingle.util.ExceptionUtil;
@@ -33,7 +28,6 @@ import static me.marin.calcoverlay.ninjabrainapi.NinjabrainBotEventSubscriber.GS
 
 public class OverlayUtil {
 
-    public static Image homeIconImage = null;
     public static Image overworldIconImage = null;
     public static Image netherIconImage = null;
     public static Image distanceIconImage = null;
@@ -50,7 +44,6 @@ public class OverlayUtil {
 
     public static void loadImagesAndStyles() {
         try {
-            homeIconImage = ImageIO.read(Objects.requireNonNull(OverlayUtil.class.getResource("/icons/home.png")));
             overworldIconImage = ImageIO.read(Objects.requireNonNull(OverlayUtil.class.getResource("/icons/overworld.png")));
             netherIconImage = ImageIO.read(Objects.requireNonNull(OverlayUtil.class.getResource("/icons/nether.png")));
             distanceIconImage = ImageIO.read(Objects.requireNonNull(OverlayUtil.class.getResource("/icons/distance.png")));
@@ -75,9 +68,14 @@ public class OverlayUtil {
         ).getMainPanel();
     }
 
-    public static JPanel measurements(List<Pair<Prediction, AngleToCoords>> predictions, PlayerPosition playerPosition) {
+    public static JPanel invalidMeasurement() {
+        return new InvalidMeasurementGUI().getMainPanel();
+    }
+
+    public static JPanel measurements(List<Pair<Prediction, AngleToCoords>> predictions, List<EyeThrow> eyeThrows, PlayerPosition playerPosition) {
         return new MeasurementsGUI(
                 predictions,
+                eyeThrows,
                 playerPosition
         ).getMainPanel();
     }
@@ -90,17 +88,19 @@ public class OverlayUtil {
         return null;
     }
 
+    private static Debouncer imageWriteDebouncer = new Debouncer(50);
     public static void writeImage(JPanel panel) {
-        JPanel wrapper = getFinalOverlayPanel(panel);
+        imageWriteDebouncer.runTask(() -> {
+            JPanel wrapper = getFinalOverlayPanel(panel);
 
-        BufferedImage image = ScreenImage.createImage(wrapper);
-
-        try {
-            ImageIO.write(image, "png", CalcOverlay.OVERLAY_PATH.toFile());
-            Files.write(CalcOverlay.OBS_LINK_STATE_PATH, String.valueOf(System.nanoTime()).getBytes(StandardCharsets.UTF_8), StandardOpenOption.TRUNCATE_EXISTING);
-        } catch (Exception e) {
-            log(Level.ERROR, "Error while writing overlay:\n" + ExceptionUtil.toDetailedString(e));
-        }
+            BufferedImage image = ScreenImage.createImage(wrapper);
+            try {
+                ImageIO.write(image, "png", CalcOverlay.OVERLAY_PATH.toFile());
+                Files.write(CalcOverlay.OBS_LINK_STATE_PATH, String.valueOf(System.nanoTime()).getBytes(StandardCharsets.UTF_8), StandardOpenOption.TRUNCATE_EXISTING);
+            } catch (Exception e) {
+                log(Level.ERROR, "Error while writing overlay:\n" + ExceptionUtil.toDetailedString(e));
+            }
+        });
     }
 
     private final static int IMAGE_WIDTH = 1250;
@@ -131,11 +131,14 @@ public class OverlayUtil {
             return OverlayUtil.empty();
         }
 
+        //CalcOverlay.log(Level.INFO, response.toString());
+
         switch (response.get("resultType").getAsString()) {
             default:
             case "NONE":
-            case "FAILED":
                 return OverlayUtil.empty();
+            case "FAILED":
+                return OverlayUtil.invalidMeasurement();
             case "BLIND":
                 JsonObject bcResponse = NINJABRAIN_BOT_EVENT_SUBSCRIBER.getSseClient().get("blind");
 
@@ -152,7 +155,9 @@ public class OverlayUtil {
                     predictionsList.add(Pair.of(prediction, angleToCoords));
                 }
 
-                return OverlayUtil.measurements(predictionsList, playerPosition);
+                List<EyeThrow> eyeThrows = GSON.fromJson(response.get("eyeThrows"), new TypeToken<List<EyeThrow>>(){}.getType());
+
+                return OverlayUtil.measurements(predictionsList, eyeThrows, playerPosition);
             case "ALL_ADVANCEMENTS":
                 JsonObject aaResponse = NINJABRAIN_BOT_EVENT_SUBSCRIBER.getSseClient().get("all-advancements");
 
@@ -221,9 +226,11 @@ public class OverlayUtil {
         return OverlayUtil.blindCoords(xNether, zNether, evaluation, probability);
     }
 
+    public static final Color ADJUSTMENT_POSITIVE = Color.decode("#75CC6C");
+    public static final Color ADJUSTMENT_NEGATIVE = Color.decode("#CC6E72");
 
-    private static final Color COLOR_GRADIENT_0 = Color.RED;
-    private static final Color COLOR_GRADIENT_50 = Color.YELLOW;
+    public static final Color COLOR_GRADIENT_0 = Color.RED;
+    public static final Color COLOR_GRADIENT_50 = Color.YELLOW;
     public static final Color COLOR_GRADIENT_100 = Color.decode("#00CE29");
     private static final Color[] colors = new Color[]{COLOR_GRADIENT_0, COLOR_GRADIENT_50, COLOR_GRADIENT_100};
 
